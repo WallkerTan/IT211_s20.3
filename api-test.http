@@ -1,0 +1,28 @@
+### Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123456"
+}
+
+### Call protected API
+GET http://localhost:8080/api/employees/profile
+Authorization: Bearer {{accessToken}}
+
+### Refresh token
+POST http://localhost:8080/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Logout
+POST http://localhost:8080/api/auth/logout
+Authorization: Bearer {{accessToken}}
+
+### Call old token after logout - expect 401
+GET http://localhost:8080/api/employees/profile
+Authorization: Bearer {{accessToken}}
